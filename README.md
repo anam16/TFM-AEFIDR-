@@ -10,13 +10,13 @@ Este repositorio contiene varios scripts y archivos organizados en carpetas espe
 	- "Codigo_arbol.html".
 	- "NCBI.html".
 
-- **scripts_python**: contiene scripts en formato `.ipynb` (Jupyter Notebook).  
+- **scripts_python**: contiene scripts en formato `.ipynb` (Jupyter Notebook).
 	-"Procesado_seq.ipynb": sirve para el procesado de las secuencias de las proteínas.
 	-"Procesado_archivos_mmCIF.ipynb": sirve para el procesamiento de los archivos en formato mmCIF y representación de la estructura terciaria y exónica.
 
 
 - **script_bash**: contiene un script en formato `.sh` (shell script).
-	-"exonerate.sh": sirve para alinear las secuencias de proteínas con sus respectivas secuencias de ADN, usando el programa exonerate.
+	- "exonerate.sh": sirve para alinear las secuencias de proteínas con sus respectivas secuencias de ADN, usando el programa exonerate.
 
 - **Datos**: esta carpeta agrupa todos los archivos de datos que se utilizan en el análisis de este estudio.
 
