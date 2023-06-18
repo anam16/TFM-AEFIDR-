@@ -22,5 +22,5 @@ Este repositorio contiene varios scripts y archivos organizados en carpetas espe
 
 Por último, en este repositorio se encuentras distintas carpetas denominadas por el nombre de un clado. En estas se encuentran los archivos mmCIF, correspondientes de cada clado, usados en este trabajo.
 
-Por favor, consulte los scripts y archivos individuales para más detalles.
+Consulte los scripts y archivos individuales para más detalles.
 
