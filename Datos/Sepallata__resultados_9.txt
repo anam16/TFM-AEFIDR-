@@ -1,0 +1,141 @@
+Command line: [exonerate --model protein2genome --query proteina_seq9.fasta --target dna_seq9.fasta --showtargetgff true]
+Hostname: [dayhoff.inf.um.es]
+
+C4 Alignment:
+------------
+         Query: AF-P29384-F1 (Developmental protein SEPALLATA 2)
+        Target: NC_003074.8 Arabidopsis thaliana chromosome 3, partial sequence:[revcomp]
+         Model: protein2genome:local
+     Raw score: 1216
+   Query range: 0 -> 250
+  Target range: 2409 -> 278
+
+    1 : MetGlyArgGlyArgValGluLeuLysArgIleGluAsnLysIleAsnArgGlnValThrPh :   21
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        MetGlyArgGlyArgValGluLeuLysArgIleGluAsnLysIleAsnArgGlnValThrPh
+ 2409 : ATGGGAAGAGGAAGAGTAGAGCTCAAGAGGATAGAGAACAAAATCAACAGACAAGTGACGTT : 2349
+
+   22 : eAlaLysArgArgAsnGlyLeuLeuLysLysAlaTyrGluLeuSerValLeuCysAspAlaG :   42
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        eAlaLysArgArgAsnGlyLeuLeuLysLysAlaTyrGluLeuSerValLeuCysAspAlaG
+ 2348 : TGCTAAACGTAGAAATGGTTTGCTGAAAAAAGCTTATGAGCTTTCTGTTCTCTGCGATGCTG : 2286
+
+   43 : luValSerLeuIleValPheSerAsnArgGlyLysLeuTyrGluPheCysSerThrSer{As :   62
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{||
+        luValSerLeuIleValPheSerAsnArgGlyLysLeuTyrGluPheCysSerThrSer{As
+ 2285 : AAGTCTCTCTCATCGTCTTCTCCAACCGTGGCAAGCTCTACGAGTTCTGCAGCACCTCC{AA : 2226
+
+   63 : }  >>>> Target Intron 1 >>>>  {n}MetLeuLysThrLeuGluArgTyrGlnLy :   72
+        }            599 bp           {|}|||||||||||||||||||||||||||||
+        }++                         ++{n}MetLeuLysThrLeuGluArgTyrGlnLy
+ 2225 : }gt.........................ag{C}ATGCTCAAGACACTGGAAAGGTATCAGAA : 1597
+
+   73 : sCysSerTyrGlySerIleGluValAsnAsnLysProAlaLysGluLeuGlu  >>>> Tar :   90
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||          
+        sCysSerTyrGlySerIleGluValAsnAsnLysProAlaLysGluLeuGlu++        
+ 1596 : GTGTAGCTATGGCTCCATTGAAGTCAACAACAAACCTGCTAAAGAGCTTGAGgt........ : 1541
+
+   91 : get Intron 2 >>>>  AsnSerTyrArgGluTyrLeuLysLeuLysGlyArgTyrGluA :  104
+          141 bp           |||||||||||||||||||||||||||||||||||||||||||
+                         ++AsnSerTyrArgGluTyrLeuLysLeuLysGlyArgTyrGluA
+ 1540 : .................agAACAGCTACAGAGAGTACTTGAAGCTGAAAGGTAGATATGAAA : 1360
+
+  105 : snLeuGlnArgGlnGln{Ar}  >>>> Target Intron 3 >>>>  {g}AsnLeuLeu :  113
+        |||||||||||||||||{||}            104 bp           {|}|||||||||
+        snLeuGlnArgGlnGln{Ar}++                         ++{g}AsnLeuLeu
+ 1359 : ATCTGCAACGTCAGCAG{AG}gt.........................ag{A}AATCTTCTT : 1229
+
+  114 : GlyGluAspLeuGlyProLeuAsnSerLysGluLeuGluGlnLeuGluArgGlnLeuAspGl :  134
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        GlyGluAspLeuGlyProLeuAsnSerLysGluLeuGluGlnLeuGluArgGlnLeuAspGl
+ 1228 : GGAGAGGATCTTGGACCTCTGAATTCAAAGGAGCTAGAGCAGCTTGAGCGTCAACTAGACGG : 1166
+
+  135 : ySerLeuLysGlnValArgCysIleLys  >>>> Target Intron 4 >>>>  ThrGl :  145
+        ||||||||||||||||||||||||||||            125 bp           |||||
+        ySerLeuLysGlnValArgCysIleLys++                         ++ThrGl
+ 1165 : CTCTCTGAAGCAAGTTCGCTGCATCAAGgt.........................agACACA : 1008
+
+  146 : nTyrMetLeuAspGlnLeuSerAspLeuGlnGlyLysGluHisIleLeuLeuAspAlaAsnA :  166
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        nTyrMetLeuAspGlnLeuSerAspLeuGlnGlyLysGluHisIleLeuLeuAspAlaAsnA
+ 1007 : GTATATGCTTGACCAGCTCTCTGATCTTCAAGGTAAGGAGCATATCTTGCTTGATGCCAACA :  945
+
+  167 : rgAlaLeuSerMetLys  >>>> Target Intron 5 >>>>  LeuGluAspMetIleG :  177
+        |||||||||||||||||            176 bp           ||||||||||||||||
+        rgAlaLeuSerMetLys++                         ++LeuGluAspMetIleG
+  944 : GAGCTTTGTCAATGAAGgt.........................agCTGGAAGATATGATCG :  736
+
+  178 : lyValArgHisHisHisIleGlyGlyGlyTrpGluGlyGlyAspGlnGlnAsnIleAlaTyr :  197
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        lyValArgHisHisHisIleGlyGlyGlyTrpGluGlyGlyAspGlnGlnAsnIleAlaTyr
+  735 : GCGTGAGACATCACCATATAGGAGGAGGATGGGAAGGTGGTGATCAACAGAATATTGCCTAT :  676
+
+  198 : GlyHisProGlnAlaHisSerGlnGlyLeuTyrGlnSerLeuGluCysAspProThrLeuGl :  218
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        GlyHisProGlnAlaHisSerGlnGlyLeuTyrGlnSerLeuGluCysAspProThrLeuGl
+  675 : GGACATCCTCAGGCTCATTCTCAGGGACTATACCAATCTCTTGAATGTGATCCCACTTTGCA :  613
+
+  219 : nIle{Gl}  >>>> Target Intron 6 >>>>  {y}TyrSerHisProValCysSerG :  228
+        ||||{||}            236 bp           {|}||||||||||||||||||||||
+        nIle{Gl}++                         ++{y}TyrSerHisProValCysSerG
+  612 : AATT{GG}gt.........................ag{A}TATAGCCATCCAGTGTGCTCAG :  347
+
+  229 : luGlnMetAlaValThrValGlnGlyGlnSerGlnGlnGlyAsnGlyTyrIleProGlyTrp :  248
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        luGlnMetAlaValThrValGlnGlyGlnSerGlnGlnGlyAsnGlyTyrIleProGlyTrp
+  346 : AGCAAATGGCTGTGACGGTGCAAGGTCAGTCCCAACAAGGAAACGGCTACATCCCTGGCTGG :  287
+
+  249 : MetLeu :  250
+        ||||||
+        MetLeu
+  286 : ATGCTG :  279
+
+vulgar: AF-P29384-F1 0 250 . NC_003074.8 2409 278 - 1216 M 61 183 S 0 2 5 0 2 I 0 595 3 0 2 S 1 1 M 27 81 5 0 2 I 0 137 3 0 2 M 20 60 S 0 2 5 0 2 I 0 100 3 0 2 S 1 1 M 33 99 5 0 2 I 0 121 3 0 2 M 28 84 5 0 2 I 0 172 3 0 2 M 48 144 S 0 2 5 0 2 I 0 232 3 0 2 S 1 1 M 30 90
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.2.0
+##date 2023-06-17
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_003074.8	exonerate:protein2genome:local	gene	279	2409	1216	-	.	gene_id 1 ; sequence AF-P29384-F1 ; gene_orientation +
+NC_003074.8	exonerate:protein2genome:local	cds	2225	2409	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	2225	2409	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	2223	2224	.	-	.	intron_id 1 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	1626	2224	.	-	.	intron_id 1
+NC_003074.8	exonerate:protein2genome:local	splice3	1626	1627	.	-	.	intron_id 0 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	1544	1625	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	1544	1625	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	1542	1543	.	-	.	intron_id 2 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	1403	1543	.	-	.	intron_id 2
+NC_003074.8	exonerate:protein2genome:local	splice3	1403	1404	.	-	.	intron_id 1 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	1341	1402	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	1341	1402	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	1339	1340	.	-	.	intron_id 3 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	1237	1340	.	-	.	intron_id 3
+NC_003074.8	exonerate:protein2genome:local	splice3	1237	1238	.	-	.	intron_id 2 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	1137	1236	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	1137	1236	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	1135	1136	.	-	.	intron_id 4 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	1012	1136	.	-	.	intron_id 4
+NC_003074.8	exonerate:protein2genome:local	splice3	1012	1013	.	-	.	intron_id 3 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	928	1011	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	928	1011	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	926	927	.	-	.	intron_id 5 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	752	927	.	-	.	intron_id 5
+NC_003074.8	exonerate:protein2genome:local	splice3	752	753	.	-	.	intron_id 4 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	606	751	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	606	751	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	splice5	604	605	.	-	.	intron_id 6 ; splice_site "GT"
+NC_003074.8	exonerate:protein2genome:local	intron	370	605	.	-	.	intron_id 6
+NC_003074.8	exonerate:protein2genome:local	splice3	370	371	.	-	.	intron_id 5 ; splice_site "AG"
+NC_003074.8	exonerate:protein2genome:local	cds	279	369	.	-	.	
+NC_003074.8	exonerate:protein2genome:local	exon	279	369	.	-	.	insertions 0 ; deletions 0
+NC_003074.8	exonerate:protein2genome:local	similarity	279	2409	1216	-	.	alignment_id 1 ; Query AF-P29384-F1 ; Align 2410 1 183 ; Align 1625 63 81 ; Align 1403 90 60 ; Align 1236 111 99 ; Align 1012 144 84 ; Align 752 172 144 ; Align 369 221 90
+# --- END OF GFF DUMP ---
+#
+-- completed exonerate analysis

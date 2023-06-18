@@ -1,0 +1,131 @@
+Command line: [exonerate --model protein2genome --query proteina_seq5.fasta --target dna_seq5.fasta --showtargetgff true]
+Hostname: [dayhoff.inf.um.es]
+
+C4 Alignment:
+------------
+         Query: AF-F6HUJ0-F1 (Uncharacterized protein)
+        Target: NC_012008.3 Vitis vinifera cultivar PN40024 chromosome 2, 12X, whole genome shotgun sequence
+         Model: protein2genome:local
+     Raw score: 984
+   Query range: 0 -> 214
+  Target range: 459 -> 11371
+
+     1 : MetValArgGlyLysThrGlnMetLysArgIleGluAsnAlaAlaSerArgGlnValThr :    20
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         MetValArgGlyLysThrGlnMetLysArgIleGluAsnAlaAlaSerArgGlnValThr
+   460 : ATGGTGAGGGGAAAAACTCAGATGAAGAGGATAGAGAATGCAGCGAGTAGGCAAGTGACC :   517
+
+    21 : PheSerLysArgArgSerGlyLeuLeuLysLysAlaPheGluLeuSerValLeuCysAsp :    40
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         PheSerLysArgArgSerGlyLeuLeuLysLysAlaPheGluLeuSerValLeuCysAsp
+   518 : TTCTCAAAGAGGAGGAGTGGGCTATTGAAGAAGGCCTTTGAGCTGTCAGTGCTTTGTGAT :   577
+
+    41 : AlaGluValAlaLeuIleIlePheSerProArgGlyLysValPheGluPheSerSerSer :    60
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         AlaGluValAlaLeuIleIlePheSerProArgGlyLysValPheGluPheSerSerSer
+   578 : GCTGAAGTTGCACTCATCATCTTCTCTCCAAGAGGAAAGGTCTTTGAGTTCTCTAGTTCC :   637
+
+    61 : {Se}  >>>> Target Intron 1 >>>>  {r}IleAsnLysThrIleGluArgTyr :    69
+         {||}           8388 bp           {|}||||||||||||||||||||||||
+         {Se}++                         ++{r}IleAsnLysThrIleGluArgTyr
+   638 : {AG}gt.........................ag{T}ATTAACAAGACAATAGAACGCTAC :  9052
+
+    70 : GlnSerLysAlaLysGlyLeuGlyIleSerLysArgGlyAlaProGluAsnGluGln  > :    89
+         |||||||||||||||||||||||||||||||||||||||||||||||||||||||||   
+         GlnSerLysAlaLysGlyLeuGlyIleSerLysArgGlyAlaProGluAsnGluGln++ 
+  9053 : CAAAGTAAAGCCAAGGGCCTAGGAATCAGCAAGAGAGGAGCTCCAGAAAATGAGCAGgt. :  9114
+
+    90 : >>> Target Intron 2 >>>>  HisHisLeuGluGlyGluThrValAspLeuAlaL :   100
+                  969 bp           ||||||||||||||||||||||||||||||||||
+                                 ++HisHisLeuGluGlyGluThrValAspLeuAlaL
+  9115 : ........................agCATCACTTGGAGGGAGAAACTGTTGACCTGGCAA : 10114
+
+   101 : ysLysIleGluLeuLeuGluValSerLys{Ar}  >>>> Target Intron 3 >>>> :   110
+         |||||||||||||||||||||||||||||{||}            97 bp          
+         ysLysIleGluLeuLeuGluValSerLys{Ar}++                         
+ 10115 : AGAAGATTGAGCTCCTCGAAGTTTCTAAA{CG}gt......................... : 10148
+
+   111 :   {g}ArgLeuLeuGlyGluCysLeuAspSerCysSerIleGluGluLeuGlnGlnIleG :   129
+           {|}|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         ++{g}ArgLeuLeuGlyGluCysLeuAspSerCysSerIleGluGluLeuGlnGlnIleG
+ 10149 : ag{A}AGACTATTAGGCGAATGTTTGGACTCATGTTCAATAGAAGAGCTACAACAGATAG : 10298
+
+   130 : luAsnGluLeuGluGlnSerLeuSerAsnIleArgIleGlnLys  >>>> Target In :   144
+         ||||||||||||||||||||||||||||||||||||||||||||            93 b
+         luAsnGluLeuGluGlnSerLeuSerAsnIleArgIleGlnLys++              
+ 10299 : AGAATGAATTGGAGCAAAGCTTAAGCAACATTAGGATACAAAAGgt.............. : 10345
+
+   145 : tron 4 >>>>  AsnHisLeuCysLysGlyHisIleGluArgLeuLysGluGln  >>> :   158
+         p            ||||||||||||||||||||||||||||||||||||||||||     
+                    ++AsnHisLeuCysLysGlyHisIleGluArgLeuLysGluGln++   
+ 10346 : ...........agAATCATTTATGCAAGGGGCACATTGAGCGGCTGAAGGAGCAGgt... : 10480
+
+   159 : > Target Intron 5 >>>>  GluArgIleLeuGlyGluGluAsnAlaLysLeuArg :   169
+                95 bp            ||||||||||||||||||||||||||||||||||||
+                               ++GluArgIleLeuGlyGluGluAsnAlaLysLeuArg
+ 10481 : ......................agGAAAGAATTCTAGGAGAAGAAAATGCAAAGTTACGA : 10606
+
+   170 : GlyLys  >>>> Target Intron 6 >>>>  CysGlyLeuGlnProLeuGlnProS :   180
+         ||||||            628 bp           |||||||||||||||||||||||||
+         GlyLys++                         ++CysGlyLeuGlnProLeuGlnProS
+ 10607 : GGAAAGgt.........................agTGTGGGTTGCAGCCACTGCAACCAT : 11267
+
+   181 : erThrLysHisGlnSerValProTyrValGluIleSerGluValGluThrGluLeuPheI :   200
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         erThrLysHisGlnSerValProTyrValGluIleSerGluValGluThrGluLeuPheI
+ 11268 : CCACCAAACATCAGTCAGTACCATATGTAGAAATATCGGAGGTAGAGACAGAATTGTTCA : 11327
+
+   201 : leGlyProProGluArgArgThrValArgTyrLeuSerGluThr :   214
+         ||||||||||||||||||||||||||||||||||||||||||||
+         leGlyProProGluArgArgThrValArgTyrLeuSerGluThr
+ 11328 : TAGGACCACCAGAAAGACGAACAGTCCGTTATCTGTCAGAGACC : 11371
+
+vulgar: AF-F6HUJ0-F1 0 214 . NC_012008.3 459 11371 + 984 M 60 180 S 0 2 5 0 2 I 0 8384 3 0 2 S 1 1 M 27 81 5 0 2 I 0 965 3 0 2 M 21 63 S 0 2 5 0 2 I 0 93 3 0 2 S 1 1 M 33 99 5 0 2 I 0 89 3 0 2 M 14 42 5 0 2 I 0 91 3 0 2 M 14 42 5 0 2 I 0 624 3 0 2 M 43 129
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.2.0
+##date 2023-06-17
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_012008.3	exonerate:protein2genome:local	gene	460	11371	984	+	.	gene_id 1 ; sequence AF-F6HUJ0-F1 ; gene_orientation +
+NC_012008.3	exonerate:protein2genome:local	cds	460	641	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	460	641	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	642	643	.	+	.	intron_id 1 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	642	9029	.	+	.	intron_id 1
+NC_012008.3	exonerate:protein2genome:local	splice3	9028	9029	.	+	.	intron_id 0 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	9030	9111	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	9030	9111	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	9112	9113	.	+	.	intron_id 2 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	9112	10080	.	+	.	intron_id 2
+NC_012008.3	exonerate:protein2genome:local	splice3	10079	10080	.	+	.	intron_id 1 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	10081	10145	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	10081	10145	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	10146	10147	.	+	.	intron_id 3 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	10146	10242	.	+	.	intron_id 3
+NC_012008.3	exonerate:protein2genome:local	splice3	10241	10242	.	+	.	intron_id 2 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	10243	10342	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	10243	10342	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	10343	10344	.	+	.	intron_id 4 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	10343	10435	.	+	.	intron_id 4
+NC_012008.3	exonerate:protein2genome:local	splice3	10434	10435	.	+	.	intron_id 3 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	10436	10477	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	10436	10477	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	10478	10479	.	+	.	intron_id 5 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	10478	10572	.	+	.	intron_id 5
+NC_012008.3	exonerate:protein2genome:local	splice3	10571	10572	.	+	.	intron_id 4 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	10573	10614	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	10573	10614	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	splice5	10615	10616	.	+	.	intron_id 6 ; splice_site "GT"
+NC_012008.3	exonerate:protein2genome:local	intron	10615	11242	.	+	.	intron_id 6
+NC_012008.3	exonerate:protein2genome:local	splice3	11241	11242	.	+	.	intron_id 5 ; splice_site "AG"
+NC_012008.3	exonerate:protein2genome:local	cds	11243	11371	.	+	.	
+NC_012008.3	exonerate:protein2genome:local	exon	11243	11371	.	+	.	insertions 0 ; deletions 0
+NC_012008.3	exonerate:protein2genome:local	similarity	460	11371	984	+	.	alignment_id 1 ; Query AF-F6HUJ0-F1 ; Align 460 1 180 ; Align 9031 62 81 ; Align 10081 89 63 ; Align 10244 111 99 ; Align 10436 144 42 ; Align 10573 158 42 ; Align 11243 172 129
+# --- END OF GFF DUMP ---
+#
+-- completed exonerate analysis
