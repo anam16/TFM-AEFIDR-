@@ -1,0 +1,184 @@
+---
+title: "Información NCBI"
+author: "Ana María Muñoz"
+date: "2023-05-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.  Se cargan las librerias necesarias. A continuación, se procede a hacer un breve descripción de cada una:
+
+-   **rentrez:** proporciona herramientas para acceder y descargar datos biológicos de la base de datos *National Center for Biotechnology Information* (NCBI), como secuencias de ADN y proteínas, para su análisis.$^1$
+
+-   **Biostrings:** proporciona funciones y estructuras de datos específicamente diseñadas para el manejo y análisis de secuencias biológicas.$^2$
+
+
+```{r}
+library(rentrez)
+library(Biostrings)
+```
+
+
+```{r}
+getwd()
+```
+
+1. Se crea una función denominada NCBI_genes para extraer la información necesaria para cada gen de la plataforma NCBI.
+
+
+```{r}
+NCBI_genes <- function(genes_nomb, out_archv) {
+  # Para almacenar todas las secuencias FASTA finales
+  fasta_final <- c()  
+
+  for(gene in genes_nomb) {
+    #Para comprobar que gen se esta buscando.
+    cat("Buscando término:", gene, "\n")
+    #Para buscar los genes en la base de datos de NCBI
+    search_results <- entrez_search(db="gene", term=gene)
+    
+    # Verifica si hay IDs en los resultados de búsqueda
+    if (length(search_results$ids) == 0) {
+      cat("No se encontraron IDs para el término:", gene, "\n")
+      next # Pasa al siguiente término en la lista
+    }
+    
+    gene_id <- search_results$ids  
+    
+    #Para recuperar información del gen 
+    gene_summary <- entrez_summary(db="gene", id=gene_id)
+    
+    #Para obtener el identificador de acceso del cromosoma en el que se encuentra el gen.
+    dna_nom <- gene_summary$genomicinfo$chraccver
+    
+    #Para obtener información sobre su posición de comienzo y final
+    inicio <- gene_summary$genomicinfo$chrstart
+    fin <- gene_summary$genomicinfo$chrstop
+    
+    # Obtiene la secuencia de nucleótidos
+      nucleotide_fasta <- entrez_fetch(db="nucleotide", id=dna_nom, rettype="fasta")
+      
+      # Separa la cabecera del resto de la secuencia
+      fasta_lines <- strsplit(nucleotide_fasta , "\n")[[1]]
+      cab <- fasta_lines[1]
+      seq <- paste(fasta_lines[-1], collapse="")
+
+    
+    if(inicio > fin) {
+      # Ajustar las coordenadas para obtener la secuencia desde el inicio hasta el fin.
+      inicio <- inicio + 1
+      temp <- inicio
+      inicio <- fin + 1
+      fin <- temp
+    }
+      
+      # Obtiene la subsecuencia desde 'start' hasta 'stop'
+      subsequence <- substring(seq, inicio, fin)
+      
+      # Añade el encabezado de la secuencia FASTA y la subsecuencia a la lista
+      fasta_final <- c(fasta_final, paste(cab, subsequence, sep="\n"))
+  }
+  
+  # Escribe las secuencias FASTA en el archivo de salida.
+  writeLines(fasta_final, out_archv)
+}
+
+
+```
+
+2. Se procede a llamar a la función anterior con los identificadores de los genes.
+
+```{r}
+AGL6<-c("AAY25580","ERM96536","NP_001268111","XP_002263143","NP_191671","NP_182089")
+NCBI_genes(AGL6, "AGL6_DNA.fasta")
+Sep<-c("XP_019080193","XP_002263039","XP_002263410","CAN84110","CBI27678","NP_564214","NP_001292763","NP_001292758","NP_186880","NP_001119230","NP_178466")
+NCBI_genes(Sep, "Sepallata_DNA.fasta")
+SOC1<-c("NP_001267909","ABF56527","NP_182090","XP_006829116","XP_002275695","NP_001319907","NP_001320037","NP_199999","NP_001190517","NP_001032123")
+NCBI_genes(SOC1, "SOC1_DNA.fasta")
+SVP<-c("AFC96914","XP_019073897","XP_002285687","NP_001324584","CBI35558","NP_194185","ERM97390","CBI19301","XP_002273556","NP_001324454","NP_195507","NP_001326287","NP_001324071","ERN18058")
+NCBI_genes(SVP, "SVP_DNA.fasta")
+D7SH01<-"CBI15681.3"
+NCBI_genes(D7SH01,"D7SH01_DNA.fasta")
+MIKC<-("NP_001185120")
+NCBI_genes(MIKC,"Q9SA07.fasta")
+```
+
+3. En el análisis del clon genómico de la proteína con ID CBI19301 en NCBI, se observa que al extraer la secuencia de nucleótidos correspondiente a las coordenadas de inicio y fin específicas en su cromosoma, la secuencia extraída no contiene los nucleótidos correspondientes al dominio M, impidiendo su análisis. Para solucionar esto, se procede a obtener un archivo fasta del clon genómico completo.
+
+```{r}
+gene<-"CBI19301"
+search_results <- entrez_search(db="gene", term=gene)
+gene_id<-search_results$ids  
+
+gene_summary <- entrez_summary(db="gene", id=gene_id)
+dna_nom<-gene_summary$genomicinfo$chraccver
+
+nucleotide_fasta <- entrez_fetch(db="nucleotide", id=dna_nom, rettype="fasta")
+
+
+writeLines(nucleotide_fasta, "E0CNS3_DNA.fasta")
+```
+
+
+4. El clon genómico de la proteína de *Marchantia polimorpha* con identificador ADB81895 en NCBI, no esta disponible. Este ha sido obtenido de la base de datos MarpolBase. Con el siguiente código se procede a unir los dos archivos de ADN de las distintas proteinas que conforman el clado MIKC*.
+
+```{r}
+# Función para leer el contenido de un archivo FASTA
+leer_fasta <- function(ruta_archv) {
+  archv <- file(ruta_archv, "r")
+  contenido <- readLines(archv)
+  close(archv)
+  return(contenido)
+}
+
+# Función para escribir contenido en un archivo FASTA
+escrib_fasta <- function(ruta_archv, contenido) {
+  archv <- file(ruta_archv, "w")
+  writeLines(contenido, archv)
+  close(archv)
+}
+
+# Rutas a los archivos FASTA de entrada
+archv1 <- "Marchantia.fasta"
+archv2 <- "Q9SA07.fasta"
+
+# Leer el contenido de ambos archivos FASTA
+contenido_1 <- leer_fasta(archv1)
+contenido_2 <- leer_fasta(archv2)
+
+# Unir el contenido de ambos archivos
+comb_contenido <- c(contenido_1, contenido_2)
+
+# Ruta al archivo FASTA de salida
+output_file <- "MIKC_DNA.fasta"
+
+# Escribir el contenido combinado en el nuevo archivo FASTA
+escrib_fasta(output_file, comb_contenido)
+
+```
+
+
+
+Referencias:
+
+1. Winter, D. J. rentrez: An R package for the NCBI eUtils API. 9, (2017).
+2. Pagès H et al. Biostrings: Efficient manipulation of biological strings. R package version 2.68.1 (2023). https://bioconductor.org/packages/Biostrings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

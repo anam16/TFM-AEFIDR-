@@ -1,0 +1,282 @@
+---
+title: "Arboles filogenéticos"
+author: "Ana María Muñoz"
+date: "2023-05-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.  Se cargan las librerias necesarias. A continuación, se procede a hacer un breve descripción de cada una:
+
+-   **ggplot2:** sirve para crear gráficos.$^1$
+
+-   **ggtree:** se utiliza para visualizar datos filogenéticos y y datos de anotación.Es comúnmente usado en análisis evolutivos y de bioinformática.$^2$
+
+
+```{r}
+library(ggplot2)
+library(ggtree)
+```
+
+2.  Ruta al directorio de trabajo:
+
+```{r}
+setwd("C:/Users/anamaria/Desktop/universidad/Master/Master/Asignaturas/TFM/TFM-Metodologia/Mega/")
+```
+
+3. Se selecciona el formato newick del arbol MIKC que se ha generado por el programa MEGA.
+
+```{r}
+tree_MIKC <- read.tree("Alineamiento_Muscle/JTT/Arbol_MIKC.nwk") 
+nodos<-tree_MIKC$tip.label
+```
+
+4. Se crea un dataframe para almacenar los nombres de los nodos, la correspondencia de su clado y el color que se le establece a cada clado.
+
+```{r}
+# Crea el dataframe con las columnas especificadas
+clados <- data.frame(nombre_nodos = nodos,
+                     grupo_clado= character(length(nodos)),
+                     color= character(length(nodos)),
+                     stringsAsFactors = FALSE)
+```
+
+5. Se procede a clasificar las proteinas con distintos colores según su clado. 
+
+```{r}
+info_grupos <- list(
+  list(inicio = "'AF-Q5D725-F1 (AGL2)'", fin = "'AF-P29383-F1 (Agamous-like MADS-box protein AGL3)'", clado = "Sepallata", color = "#FF6A6A"),
+  list(inicio = "'AF-P29386-F1 (Agamous-like MADS-box protein AGL6)'", fin = "'AF-Q2TDX2-F1 (AGL6)'", clado = "AGL6 reduced branching", color = "#3A5FCD"),
+  list(inicio = "'AF-Q7X9H6-F1 (AGAMOUS-like 79)'", fin = "'AF-Q39081-F1 (Transcription factor CAULIFLOWER)'", clado = "AP1 Cauliflower", color = "darkolivegreen3"),
+  list(inicio = "'AF-D7U912-F1 (Uncharacterized protein)'", fin = "'AF-D7TJT8-F1 (Uncharacterized protein)'", clado = "Agamous", color = "#8B3626"),
+  list(inicio = "'AF-F4KEP6-F1 (AGAMOUS-like 71)'", fin = "'AF-D1MDP7-F1 (Suppressor of overexpression of CO 1)'", clado = "SOC1", color = "#668B8B"),
+   list(inicio = "'AF-Q9SZJ6-F1 (Agamous-like MADS-box protein AGL21)'", fin = "'AF-H9CTT8-F1 (SVP-like MADS-box protein)'", clado = "SVP", color = "#B23AEE"),
+  list(inicio = "'AF-D7TDM1-F1 (AGL15)'", fin = "'AF-Q9M2K8-F1 (Agamous-like MADS-box protein AGL18)'", clado = "AGL15", color = "#EEC900"),
+    list(inicio = "'AF-Q9FPN7-F1 (Agamous-like MADS-box protein AGL31)'", fin = "'AF-Q9S7Q7-F1 (MADS-box protein FLOWERING LOCUS C)'", clado = "FLC", color = "deeppink"),
+  list(inicio = "'AF-Q0HA25-F1 (Agamous-like MADS-box protein MADS9)'", fin = "'AF-I6LAR5-F1 (APETALA3-like protein AP3-1)'", clado = "AP3", color = "#8B5F65"),
+  list(inicio = "'AF-F6HF63-F1 (Uncharacterized protein)'", fin = "'AF-W1NMR3-F1 (Uncharacterized protein)'", clado = "TT16", color = "#FFA54F"),
+  list(inicio = "'AF-Q68BI0-F1 (PISTILLATA-like protein)'", fin = "'AF-Q0HA25-F1 (Agamous-like MADS-box protein MADS9)'", clado = "Pistillata", color = "#FF4500"),
+  list(inicio = "'AF-Q9SA07-F1 (Agamous-like MADS-box protein AGL63)'", fin = "'AF-D3IZT6-F1 (MIKC* MADS-box transcription factor)'", clado = "MIKC*", color = "#00EE76"),
+list(inicio = "'AF-D7SH01-F1 (Uncharacterized protein)'", fin = "'AF-D7SH01-F1 (Uncharacterized protein)'", clado = "VITVI", color = "#8B8970")
+)
+```
+
+6. Se completa el dataframe denominado clados con el nombre del clado y su respectivo color.
+
+```{r}
+for (i in info_grupos) {
+  # Encuentra los índices de las proteínas de interés
+  ini <- which(clados$nombre_nodos == i$inicio)
+  fin <- which(clados$nombre_nodos == i$fin)
+  
+  # Asigna el valor a las filas correspondientes 
+  clados$grupo_clado[ini:fin] <- i$clado
+  clados$color[ini:fin] <- i$color
+}
+```
+
+7. Se procede a la integración del dataframe con el árbol filogenético para su adecuada representación gráfica.
+
+```{r}
+tree_MIKC_info <- ggtree(tree_MIKC)
+df_MIKC_clados <- merge(tree_MIKC_info$data, clados, by.x = "label", by.y = "nombre_nodos", all.x = TRUE)
+```
+
+8. Para editar los nombres de las secuencias y seleccionar solo el identificador alfanumérico de cada una.
+
+```{r}
+patrones <- c("AF-", "-F1", " \\([^)]+\\)")
+
+remv_patron <- function(nombre, patrones) {
+  for (patron in patrones) {
+    nombre <- gsub(patron, "", nombre)
+  }
+  return(nombre)
+}
+
+df_MIKC_clados$label <- remv_patron(df_MIKC_clados$label, patrones)
+```
+
+### MIKC.
+
+9. Se procede a crear el objeto del arbol filogenético. Este código sirve para:
+  * Visualizar el árbol MIKC e incorporar información adicional contenida en el dataframe creado previamente.
+  * Añade texto a las ramas del árbol para mostrar su longitud, redondeando sus valores a 3 decimales.Además, ajusta el tamaño y posición del texto.
+  * Inserta las etiquetas de las secuencias a las ramas con sus respectivos clados y le asigna su color, previamente definido.
+  * Establece la escala de colores a utilizar.
+  * Modificar algunas opciones de tema, como desactivar la leyenda y ajustar el tamaño del texto del eje X.
+  * Ajusta las coordenadas cartesianas del gráfico.
+  
+```{r}
+ggtree_obj_MIKC <- ggtree(tree_MIKC, data = df_MIKC_clados) + 
+  geom_text(aes(x = branch, label = round(branch.length, 3)), size = 5, hjust = 0.6, vjust = -0.3) +
+  geom_tiplab(aes(label = paste0(label, " ", grupo_clado), color = color), size = 7, offset = 0.03,fontface = "bold") +
+  scale_color_identity() +
+  theme_tree2() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size = 15)) +
+  coord_cartesian(xlim = c(0, 1.5))
+```
+
+10. Se guarda el árbol en un archivo pdf.
+
+```{r}
+ggsave("Arbol_MIKC_colores.pdf", ggtree_obj_MIKC, width = 21, height = 29.7, limitsize = FALSE)
+```
+
+
+Los procedimientos ejecutados a continuación para los dominios M, I, K y C, son idénticos a los aplicados previamente para el dominio MIKC.
+
+### Dominio M
+
+```{r}
+tree_M <- read.tree("Alineamiento_Muscle/JTT/Arbol_dom_M.nwk")
+```
+
+```{r}
+tree_M_info <- ggtree(tree_M)
+df_M_clados <- merge(tree_M_info$data, clados, by.x = "label", by.y = "nombre_nodos", all.x = TRUE)
+```
+
+
+```{r}
+df_M_clados$label <- remv_patron(df_M_clados$label, patrones)
+```
+
+```{r}
+ggtree_obj_M <- ggtree(tree_M, data = df_M_clados) + 
+  geom_text(aes(x = branch, label = round(branch.length, 3)), size = 5, hjust = 0.8, vjust = -0.3) +
+  geom_tiplab(aes(label = paste0(label, " ", grupo_clado), color = color), size=7, offset = 0.01,fontface = "bold") +
+  scale_color_identity() +
+  theme_tree2() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size = 20)) +
+  coord_cartesian(xlim = c(0, 0.6))
+```
+
+
+```{r}
+ggsave("Arbol_M_colores.pdf", ggtree_obj_M, width = 21, height = 29.7, limitsize = FALSE)
+```
+
+### Dominio I
+
+```{r}
+tree_I <- read.tree("Alineamiento_Muscle/JTT/Arbol_dom_I.nwk")
+```
+
+```{r}
+tree_I_info <- ggtree(tree_I)
+df_I_clados <- merge(tree_I_info$data, clados, by.x = "label", by.y = "nombre_nodos", all.x = TRUE)
+```
+
+Se procede a crear una función denominada edit_label con el propósito de permitir la inserción del nombre del grupo de clado, correspondiente a las etiquetas definidas en prots_caract, bajo el nombre de la secuencia. Esto facilita su adaptación al formato requerido, evitando cualquier truncamiento
+
+```{r}
+df_I_clados$label <- remv_patron(df_I_clados$label, patrones)
+
+edit_label <- function(df, prots_caract) {
+  df$label <- ifelse(df$label %in%  prots_caract,
+                     paste0(df$label, "\n", df$grupo_clado),
+                     paste0(df$label, " ", df$grupo_clado))
+  return(df)
+}
+
+
+prots_caract <- c("'A0A1I9LM26'","'A0A2H1ZE96'")
+df_I_clados<- edit_label(df_I_clados,  prots_caract)
+```
+
+```{r}
+ggtree_obj_I <- ggtree(tree_I, data = df_I_clados) + 
+  geom_text(aes(x = branch, label = round(branch.length, 3)), size = 4.5, hjust = 0.5, vjust = -0.3) +
+  geom_tiplab(aes(label = label, color = color), size = 6.5, offset = 0.1,fontface = "bold") +
+  scale_color_identity() +
+  theme_tree2() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size = 20)) +
+  coord_cartesian(xlim = c(0, 8.15))
+```
+
+
+```{r}
+ggsave("Arbol_I_colores.pdf", ggtree_obj_I, width = 21, height = 29.7, limitsize = FALSE)
+```
+
+### Dominio K
+
+```{r}
+tree_K <- read.tree("Alineamiento_Muscle/JTT/Arbol_dom_K.nwk")
+```
+
+```{r}
+tree_K_info <- ggtree(tree_K)
+df_K_clados <- merge(tree_K_info$data, clados, by.x = "label", by.y = "nombre_nodos", all.x = TRUE)
+```
+
+
+```{r}
+df_K_clados$label <- remv_patron(df_K_clados$label, patrones)
+```
+
+```{r}
+ggtree_obj_K <- ggtree(tree_K, data = df_K_clados) + 
+  geom_text(aes(x = branch, label = round(branch.length, 3)), size = 5, hjust = 0.5, vjust = -0.3) +
+  geom_tiplab(aes(label = paste0(label, " ", grupo_clado), color = color), size = 7, offset = 0.03,fontface = "bold") +
+  scale_color_identity() +
+  theme_tree2() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size = 20)) +
+  coord_cartesian(xlim = c(0, 2))
+```
+
+
+```{r}
+ggsave("Arbol_K_colores.pdf", ggtree_obj_K, width = 21, height = 29.7, limitsize = FALSE)
+```
+
+### Dominio C
+
+```{r}
+tree_C <- read.tree("Alineamiento_Muscle/JTT/Arbol_dom_C.nwk")
+```
+
+```{r}
+tree_C_info <- ggtree(tree_C)
+df_C_clados <- merge(tree_C_info$data, clados, by.x = "label", by.y = "nombre_nodos", all.x = TRUE)
+```
+
+
+```{r}
+df_C_clados$label <- remv_patron(df_C_clados$label, patrones)
+prots_caract <- c("'D7T1T8'","'Q38876'")
+df_C_clados <- edit_label(df_C_clados,prots_caract)
+```
+
+```{r}
+ggtree_obj_C <- ggtree(tree_C, data = df_C_clados) + 
+  geom_text(aes(x = branch, label = round(branch.length, 3)), size = 5, hjust =0.9, vjust = -0.3) +
+  geom_tiplab(aes(label = label, color = color), size = 7, offset = 0.03,fontface = "bold") +
+  scale_color_identity() +
+  theme_tree2() +
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size = 20)) +
+  coord_cartesian(xlim = c(0, 20.5))
+```
+
+
+```{r}
+ggsave("Arbol_C_colores.pdf", ggtree_obj_C, width = 21, height = 29.7, limitsize = FALSE)
+```
+
+
+
+## Referencias:
+
+1. Hadley Wickham. ggplot2: Elegant Graphics for Data Analysis. (2016).
+2. Xu, S. et al. Ggtree: A serialized data object for visualization of a phylogenetic tree and annotation data. iMeta 1, e56 (2022).
+
+
