@@ -7,7 +7,7 @@ Este repositorio contiene varios scripts y archivos organizados en carpetas espe
 - **scripts_R**: contiene scripts en formato `.Rmd` (R Markdown) y sus versiones en formato `.html`.
 	- "Codigo_arbol.Rmd": sirve para visualizar los árboles filogenéticos.
 	- "NCBI.Rmd": sirve para obtener las secuencias de los clones genómicos de las proteínas de la base de datos NCBI.   
-	- -"Codigo_arbol.html".
+	- "Codigo_arbol.html".
 	- "NCBI.html".
 
 - **scripts_python**: contiene scripts en formato `.ipynb` (Jupyter Notebook).
