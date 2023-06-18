@@ -11,8 +11,8 @@ Este repositorio contiene varios scripts y archivos organizados en carpetas espe
 	- "NCBI.html".
 
 - **scripts_python**: contiene scripts en formato `.ipynb` (Jupyter Notebook).
-	-"Procesado_seq.ipynb": sirve para el procesado de las secuencias de las proteínas.
-	-"Procesado_archivos_mmCIF.ipynb": sirve para el procesamiento de los archivos en formato mmCIF y representación de la estructura terciaria y exónica.
+	- "Procesado_seq.ipynb": sirve para el procesado de las secuencias de las proteínas.
+	- "Procesado_archivos_mmCIF.ipynb": sirve para el procesamiento de los archivos en formato mmCIF y representación de la estructura terciaria y exónica.
 
 
 - **script_bash**: contiene un script en formato `.sh` (shell script).
