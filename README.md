@@ -16,7 +16,7 @@ Este repositorio contiene varios scripts y archivos organizados en carpetas espe
 
 
 - **script_bash**: contiene un script en formato `.sh` (shell script).
-	- "exonerate.sh": sirve para alinear las secuencias de proteínas con sus respectivas secuencias de ADN, usando el programa exonerate.
+	- "exonerate.sh": sirve para alinear las secuencias de proteínas con sus respectivas secuencias de ADN, usando el programa Exonerate.
 
 - **Datos**: esta carpeta agrupa todos los archivos de datos que se utilizan en el análisis de este estudio.
 
